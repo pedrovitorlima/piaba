@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<world>
+	<world-class>cerveja.CervejaWorld</world-class>
+	
+	<percepts>
+		<percept>
+			<percept-name>l</percept-name>
+			<percept-value>10</percept-value>
+		</percept>
+		
+		<percept>
+			<percept-name>beer</percept-name>
+			<percept-value>100</percept-value>
+		</percept>
+		
+		<percept>
+			<percept-name>initialPosition</percept-name>
+			<percept-value>0,0</percept-value>
+		</percept>
+		
+		
+		<percept>
+			<percept-name>qtdCiclosDuracaoAcao</percept-name>
+			<percept-value>5</percept-value>
+		</percept>
+	</percepts>
+	
+	<agent-executor>
+		<agent-executor-type>SYNCHRONOUS</agent-executor-type>
+	</agent-executor>
+	
+	<cycles-by-step>1</cycles-by-step>
+</world>

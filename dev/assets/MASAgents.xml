@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<agents>
+
+	<agent>
+		<agent-name>bebedor</agent-name>
+		<agent-class>cerveja.Bebedor</agent-class>
+		<percepts>
+			<percept>
+				<percept-name>velocity</percept-name>
+				<percept-value>20</percept-value>
+			</percept>
+			
+			<percept>
+				<percept-name>initialPosition</percept-name>
+				<percept-value>9,9</percept-value>
+			</percept>
+			
+			<percept>
+				<percept-name>beer</percept-name>
+				<percept-value>0</percept-value>
+			</percept>
+						
+		</percepts>
+	</agent>
+	
+	<agent>
+		<agent-name>robo</agent-name>
+		<agent-class>cerveja.RoboCerveja</agent-class>
+		
+		<percepts>
+			<percept>
+				<percept-name>initialPosition</percept-name>
+				<percept-value>0,0</percept-value>
+			</percept>
+		
+			<percept>
+				<percept-name>beer</percept-name>
+				<percept-value>0</percept-value>
+			</percept>
+		</percepts>
+		
+		
+	</agent>
+</agents>
