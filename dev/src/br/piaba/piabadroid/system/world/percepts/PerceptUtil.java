@@ -185,7 +185,7 @@ public class PerceptUtil {
 	 * **/
 	public void addPercept(Percept percept) {
 		
-		this.percepts.add(percept);
+		this.percepts.add(percept.clone());
 	}
 
 	public void updatePercept(String namePercept, int valuePercept) throws PerceptNotFoundException {
@@ -198,9 +198,8 @@ public class PerceptUtil {
 	}
 
 	public void updatePercepts(List<Percept> percepts) {
-	
+		
 		if(percepts != null){
-			
 			for(Percept percept : percepts){
 				boolean found = false;
 				
@@ -219,6 +218,11 @@ public class PerceptUtil {
 				if(!found){
 					addPercept(percept);
 				}
+				
+				if(percept.isToRemove()){
+					removePercept(percept);
+					continue;
+				}
 			}
 			
 		}
@@ -228,6 +232,9 @@ public class PerceptUtil {
 
 	public Percept getUnicPercept(String namePercept, String relatedAgent) {
 		for(Percept percept : getPercepts()){
+			if(percept.getName().equals("ocioso")){
+				System.err.println();
+			}
 			if(percept.getName().equals(namePercept) && percept.getRelatedAgent().equals(relatedAgent)){
 				return percept;
 			}

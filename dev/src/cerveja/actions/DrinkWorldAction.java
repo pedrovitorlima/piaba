@@ -25,7 +25,9 @@ public class DrinkWorldAction extends WorldAction {
 
 	@Override
 	public List<Percept> action(PerceptUtil bbAgent) {
-		int qtdBeer = bbAgent.getUnicPerceptByName("beer").getIntValue();
+		
+		Percept perceptBeer = bbAgent.getUnicPerceptByName("beer");
+		int qtdBeer = perceptBeer.getIntValue();
 		
 		Param velocity = getParameter("velocity");
 		qtdBeer -= velocity.getIntValue();
@@ -34,8 +36,17 @@ public class DrinkWorldAction extends WorldAction {
 			qtdBeer = 0;
 		}
 		
+		perceptBeer.setValue(qtdBeer + "");
+		
 		List<Percept> percepts = new ArrayList<Percept>();
-		percepts.add(new Percept("beer", new Integer(qtdBeer).toString()));
+		percepts.add(perceptBeer);
+		
+		Percept ocioso = bbAgent.getUnicPercept("ocioso", getRequestorName());
+		if(ocioso != null){
+			ocioso.setToRemove(true);
+			percepts.add(ocioso);
+		}
+		
 		return percepts;	
 	}
 

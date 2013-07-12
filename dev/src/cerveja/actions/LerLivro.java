@@ -10,10 +10,49 @@ import br.piaba.piabadroid.system.world.percepts.PerceptUtil;
 public class LerLivro extends WorldAction {
 
 	@Override
-	public List<Percept> action(PerceptUtil bbAgent) {
-		List<Percept> percepts = new ArrayList<Percept>();
-		percepts.add(new Percept("lerLivro", "0"));
+	public boolean verify(PerceptUtil bbAgent){
+		Percept ocioso = bbAgent.getUnicPercept("ocioso", getRequestorName());
+		Percept acaoEmExecucao = bbAgent.getUnicPercept("lerLivro", getRequestorName());
+		Percept qtdCiclosDuracaoAcao = bbAgent.getPerceptsByName("qtdCiclosDuracaoAcao").get(0);
+		
+		//Se o agente estiver descansado (ocioso a três ciclos), pode executar
+		if(ocioso != null){
+			if(ocioso.getIntValue() >= 3){
+				return true;
+			}
+		}
+		
+		//Se a ação estiver em execução, mas ainda não chegou no limite, continua executando
+		if(acaoEmExecucao != null){
+			if(acaoEmExecucao.getIntValue() < qtdCiclosDuracaoAcao.getIntValue()){
+				return true;
+			}
+		}
+		
+		
+		return false;
+	}
 	
+	@Override
+	public List<Percept> action(PerceptUtil bbAgent) {
+		Percept acaoEmExecucao = bbAgent.getUnicPercept("lerLivro", getRequestorName());
+		Percept ocioso = bbAgent.getUnicPercept("ocioso", getRequestorName());
+		List<Percept> percepts = new ArrayList<Percept>();
+		
+		if(acaoEmExecucao == null){
+			acaoEmExecucao = new Percept("lerLivro", "0");
+			acaoEmExecucao.setRelatedAgent(getRequestorName());
+		}else{
+			acaoEmExecucao.setValue(acaoEmExecucao.getIntValue() + 1 + "");
+		}
+		
+		percepts.add(acaoEmExecucao);
+		
+		if(ocioso != null){
+			ocioso.setToRemove(true);
+			percepts.add(ocioso);
+		}
+				
 		return percepts;
 	}
 

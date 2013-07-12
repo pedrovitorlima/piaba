@@ -14,6 +14,7 @@ public class Percept {
 	private String value = "";
 	private boolean self;
 	private String relatedAgent = "";
+	private boolean toRemove = false;
 	
 	public Percept(String name, String value){
 		this.name = name;
@@ -57,6 +58,14 @@ public class Percept {
 	public void setRelatedAgent(String relatedAgent) {
 		this.relatedAgent = relatedAgent;
 	}
+	
+	public void setToRemove(boolean toRemove){
+		this.toRemove = toRemove;
+	}
+	
+	public boolean isToRemove(){
+		return this.toRemove;
+	}
 
 	/**
 	 * Retorna valor da percepão convertido para inteiro.
@@ -80,6 +89,7 @@ public class Percept {
 		Percept cloned = new Percept();
 		cloned.setValue(getValue());
 		cloned.setName(getName());
+		cloned.setRelatedAgent(getRelatedAgent());
 		
 		return cloned;
 	}

@@ -25,7 +25,7 @@
 	</agent>
 	
 	<agent>
-		<agent-name>robo</agent-name>
+		<agent-name>robo_1</agent-name>
 		<agent-class>cerveja.RoboCerveja</agent-class>
 		
 		<percepts>

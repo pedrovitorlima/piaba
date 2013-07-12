@@ -75,9 +75,7 @@ public abstract class GenericWorld implements World{
 				
 				if(executed){
 					List<Percept> percepts = action.action(agent.getPerceptUtil());
-					for(Percept percept : percepts){
-						percept.setRelatedAgent(agent.getName());
-					}
+					
 					getPerceptUtil().updatePercepts(percepts);
 				}
 				agent.addOldAction(action);

@@ -134,7 +134,7 @@ public abstract class GenericAgent implements Agent{
 	/**
 	 * Define percepções do agente
 	 * @param percepts Lista de {@link Percept}
-	 * **/
+	 * **/ 
 	public void setPercepts(List<Percept> percepts){
 		this.percepts = percepts;
 	}
@@ -157,11 +157,11 @@ public abstract class GenericAgent implements Agent{
 			}
 			
 			if(!hasPercept){
-				getPerceptUtil().addPercept(worldPercept);
+				getPerceptUtil().addPercept(worldPercept.clone());
 			}else{
 				//Atualiza percepções existentes
-				Percept unicPercept = getPerceptUtil().getUnicPerceptByName(namePercept);
-				if(unicPercept.getRelatedAgent().equals(worldPerceptRelatedAgent)){
+				Percept unicPercept = getPerceptUtil().getUnicPercept(namePercept, worldPerceptRelatedAgent);
+				if(unicPercept != null){
 					try{
 						getPerceptUtil().updatePercept(namePercept, valuePercept, worldPerceptRelatedAgent);
 					}catch(Exception e){
@@ -173,12 +173,8 @@ public abstract class GenericAgent implements Agent{
 		}
 		
 		//Remove as percepções do agente que não existem no mundo
-		List<String> perceptsToRemove = new ArrayList<String>();
+		List<Percept> perceptsToRemove = new ArrayList<Percept>();
 		for(Percept percept : getPercepts()){
-			
-			if(percept.getName().equals("ocioso")){
-				System.err.println("achou");
-			}
 			
 			if(!percept.isSelf()){
 				boolean hasPercept = false;
@@ -191,13 +187,13 @@ public abstract class GenericAgent implements Agent{
 				}
 				
 				if(!hasPercept){
-					perceptsToRemove.add(percept.getName());
+					perceptsToRemove.add(percept);
 				}
 			}
 		}
 		
-		for(String name : perceptsToRemove){
-			getPerceptUtil().removePercept(name);
+		for(Percept percept : perceptsToRemove){
+			getPerceptUtil().removePercept(percept);
 		}
 		
 		

@@ -28,6 +28,11 @@ public class DeliveryInternalAction extends WorldAction {
 		
 		List<Percept> percepts = new ArrayList<Percept>();
 		percepts.add(beer);
+		Percept ocioso = bbAgent.getUnicPercept("ocioso", getRequestorName());
+		if(ocioso != null){
+			ocioso.setToRemove(true);
+			percepts.add(ocioso);
+		}
 		
 		return percepts;
 	}
