@@ -49,6 +49,12 @@ public class FicarOcioso extends WorldAction {
 			percepts.add(lerLivro);
 		}
 		
+		Percept interrompeu = bbAgent.getUnicPercept("interrompeuAcao", getRequestorName());
+		if(interrompeu != null){
+			interrompeu.setToRemove(true);
+			percepts.add(interrompeu);
+		}
+		
 		return percepts;
 	}
 

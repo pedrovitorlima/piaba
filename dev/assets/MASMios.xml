@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<world-metainfos>
-	<world-metainfo>
-		<world-metainfo-class>br.piaba.mio.WorldMetaInfoTest</world-metainfo-class>
-	</world-metainfo>
-</world-metainfos>
+<meta-info-operator>
+	<meta-info>
+		<meta-info-class>cerveja.mio.HouveInterrupcaoMio</meta-info-class>
+		<cycle-frequency>1</cycle-frequency>
+	</meta-info>
+	
+	<meta-info>
+		<meta-info-class>cerveja.mio.NaoHouveInterrupcaoMio</meta-info-class>
+		<cycle-frequency>1</cycle-frequency>
+	</meta-info>
+</meta-info-operator>

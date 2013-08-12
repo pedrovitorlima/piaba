@@ -7,20 +7,38 @@ import br.piaba.piabadroid.system.agent.GenericAgent;
 import br.piaba.piabadroid.system.world.action.Param;
 import br.piaba.piabadroid.system.world.action.impl.WorldAction;
 import br.piaba.piabadroid.system.world.percepts.Percept;
-import cerveja.actions.DrinkWorldAction;
+import cerveja.actions.BeberCerveja;
 import cerveja.actions.FicarOcioso;
 
 public class Bebedor extends GenericAgent{
-	
-	
+		
 	public void executeAgent() {
 	
-		if(existeCervejaParaBeber()){
+		if(existeCervejaParaBeber() && isDescansado()){
 			beberCerveja();
 		}else{
 			ficarOcioso();
 		}
 		
+	}
+	
+	private boolean isDescansado(){
+		Percept ocioso = getOciosidade();
+		if(ocioso != null){
+			int qtdOciosidade = ocioso.getIntValue();
+			if(qtdOciosidade >= 2){
+				return true;
+			}
+		}else{
+			return false;
+		}
+		
+		return false;
+	}
+	
+	private Percept getOciosidade() {
+		Percept ocioso = getMyPerceptsUtil().getUnicPerceptByName("ocioso");
+		return ocioso;
 	}
 
 	private void ficarOcioso() {
@@ -46,7 +64,7 @@ public class Bebedor extends GenericAgent{
 		List<Param> parameters = new ArrayList<Param>();
 		parameters.add(parameter);
 		
-		WorldAction drink = new DrinkWorldAction();
+		WorldAction drink = new BeberCerveja();
 		drink.setParameters(parameters);
 		
 		addAction(drink);

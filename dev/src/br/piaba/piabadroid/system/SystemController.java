@@ -11,6 +11,7 @@ import br.piaba.piabadroid.system.world.GenericWorld;
 import br.piaba.piabadroid.system.world.InitWorld;
 import br.piaba.piabadroid.system.world.action.InitMios;
 import br.piaba.piabadroid.system.world.action.impl.MioAction;
+import br.piaba.piabadroid.system.world.model.WorldData;
 import cerveja.CervejaWorld;
 
 /**
@@ -56,6 +57,11 @@ public class SystemController{
         
         world = InitWorld.readWorld(worldStream);
         world.getWorldData().setAgents(agents); 
+        
+        if(world.getCycleUpdateGUI() != null){
+        	world.getCycleUpdateGUI().setActivity(activity);
+        }
+        
         world.getWorldData().getExecutor().setMios(mios);
         
         
@@ -73,5 +79,9 @@ public class SystemController{
 		scs.setWorld(world);
 		
 		scs.execute();
+	}
+	
+	public WorldData getWorldData(){
+		return world.getWorldData();
 	}
 }

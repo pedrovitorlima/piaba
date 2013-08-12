@@ -4,6 +4,7 @@ import br.piaba.piabadroid.system.agent.GenericAgent;
 import br.piaba.piabadroid.system.world.action.impl.WorldAction;
 import br.piaba.piabadroid.system.world.percepts.Percept;
 import cerveja.actions.ColocarLixoParaFora;
+import cerveja.actions.EntregarCerveja;
 import cerveja.actions.Descansar;
 import cerveja.actions.FicarOcioso;
 import cerveja.actions.LerLivro;
@@ -11,17 +12,23 @@ import cerveja.actions.VarrerCasa;
 
 public class RoboCerveja extends GenericAgent{
 
+	private boolean solicitarEntregaDeCerveja = false;
+	
 	public void executeAgent() {
-		WorldAction acaoQueEstaFazendoNoMomento = getAcaoQueEstaFazendoNoMomento();
-		
-		if(acaoQueEstaFazendoNoMomento != null){
-			addAction(acaoQueEstaFazendoNoMomento);
+		if(solicitarEntregaDeCerveja){
+			entregarCerveja();
 		}else{
-			if(isDescansado()){
-				fazerAlgumaCoisa();
+			WorldAction acaoQueEstaFazendoNoMomento = getAcaoQueEstaFazendoNoMomento();
+			
+			if(acaoQueEstaFazendoNoMomento != null){
+				addAction(acaoQueEstaFazendoNoMomento);
 			}else{
-				WorldAction ficarOcioso = new FicarOcioso();
-				addAction(ficarOcioso);
+				if(isDescansado()){
+					fazerAlgumaCoisa();
+				}else{
+					WorldAction ficarOcioso = new FicarOcioso();
+					addAction(ficarOcioso);
+				}
 			}
 		}
 	}
@@ -103,7 +110,13 @@ public class RoboCerveja extends GenericAgent{
 	}
 	
 	public void entregarCerveja(){
-		
+		WorldAction entregarCerveja = new EntregarCerveja();
+		addAction(entregarCerveja);
+		solicitarEntregaDeCerveja = false;
+	}
+
+	public void solicitarQueAgenteEntregueCerveja() {
+		this.solicitarEntregaDeCerveja = true;
 	}
 	
 	

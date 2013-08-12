@@ -9,6 +9,7 @@ public abstract class GenericExecutor implements Executor {
 
 	private List<GenericAgent> agents;
 	private List<MioAction> mios;
+	private int cycle = 0;
 	
 	public void setAgents(List<GenericAgent> agents) {
 		this.agents = agents;
@@ -26,6 +27,9 @@ public abstract class GenericExecutor implements Executor {
 		this.mios = mios;
 	}
 	
+	public int getCycle(){
+		return this.cycle;
+	}
 	
 	
 }

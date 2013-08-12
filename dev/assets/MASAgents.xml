@@ -20,6 +20,11 @@
 				<percept-name>beer</percept-name>
 				<percept-value>0</percept-value>
 			</percept>
+			
+			<percept>
+			    <percept-name>distress</percept-name>
+			    <percept-value>0</percept-value>
+			</percept>
 						
 		</percepts>
 	</agent>
@@ -38,8 +43,32 @@
 				<percept-name>beer</percept-name>
 				<percept-value>0</percept-value>
 			</percept>
+			
+			<percept>
+			    <percept-name>distress</percept-name>
+			    <percept-value>0</percept-value>
+			</percept>
+			
+		</percepts>		
+	</agent>
+	<agent>
+		<agent-name>robo_2</agent-name>
+		<agent-class>cerveja.RoboCerveja</agent-class>
+		
+		<percepts>
+			<percept>
+				<percept-name>initialPosition</percept-name>
+				<percept-value>0,0</percept-value>
+			</percept>
+		
+			<percept>
+				<percept-name>beer</percept-name>
+				<percept-value>0</percept-value>
+			</percept>
+			<percept>
+				<percept-name>distress</percept-name>
+				<percept-value>0</percept-value>
+			</percept>
 		</percepts>
-		
-		
 	</agent>
 </agents>

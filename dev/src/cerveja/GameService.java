@@ -20,8 +20,6 @@ public class GameService extends IntentService{
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		
-		Log.i(getClass().toString(), "onStart do serviço");
-		
 		SystemController systemController = ((CervejaApplication) getApplication()).getSystemController();
 		Thread thread = new Thread(new GameExecutorThread(systemController));
 		thread.start();

@@ -16,6 +16,7 @@ import org.xml.sax.InputSource;
 import br.piaba.piabadroid.system.agent.executor.AssynchronousExecutor;
 import br.piaba.piabadroid.system.agent.executor.GenericExecutor;
 import br.piaba.piabadroid.system.agent.executor.SynchronousExecutor;
+import br.piaba.piabadroid.system.world.gui.GenericCycleUpdateGUI;
 import br.piaba.piabadroid.system.world.percepts.Percept;
 
 
@@ -47,6 +48,24 @@ public class InitWorld {
 			
 			Node agentExecutor = ((Element) worldNode).getElementsByTagName("agent-executor").item(0);
 			Node worldExecutorClass = ((Element) agentExecutor).getElementsByTagName("agent-executor-type").item(0);
+			
+			Node cycleUpdateGui = ((Element) worldNode).getElementsByTagName("cycle-update-gui").item(0);
+			Node cycleUpdateGuiClass = ((Element) cycleUpdateGui).getElementsByTagName("cycle-update-gui-class").item(0);
+			
+			GenericCycleUpdateGUI cycleUpdate = null;
+			Class klassCycleUpdateGui = null;
+			if(cycleUpdateGui != null){
+				try {
+					klassCycleUpdateGui = Class.forName(cycleUpdateGuiClass.getTextContent());
+					cycleUpdate = (GenericCycleUpdateGUI) klassCycleUpdateGui.newInstance();
+				} catch (ClassNotFoundException e) {
+					System.err.println("A classe " + cycleUpdateGuiClass.getTextContent()
+							+ " para o atualizador de interface gráfica não foi encontrado. =>"
+							+ e.getMessage());
+					
+					return world;
+				}
+			}
 			
 			GenericExecutor executor = null;
 			if(worldExecutorClass.getTextContent().toUpperCase().equals(ASSYNCHRONOUS)){
@@ -95,6 +114,7 @@ public class InitWorld {
 				percepts.add(new Percept(perceptName, perceptValue));
 			}
 			
+			world.setCycleUpdateGUI(cycleUpdate);
 			world.getWorldData().setPercepts(percepts);
 			world.getWorldData().setExecutor(executor);
 			

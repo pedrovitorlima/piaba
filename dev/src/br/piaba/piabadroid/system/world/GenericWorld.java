@@ -11,6 +11,7 @@ import br.piaba.piabadroid.system.agent.GenericAgent;
 import br.piaba.piabadroid.system.agent.executor.Executor;
 import br.piaba.piabadroid.system.world.action.Param;
 import br.piaba.piabadroid.system.world.action.impl.WorldAction;
+import br.piaba.piabadroid.system.world.gui.GenericCycleUpdateGUI;
 import br.piaba.piabadroid.system.world.model.WorldData;
 import br.piaba.piabadroid.system.world.percepts.Percept;
 import br.piaba.piabadroid.system.world.percepts.PerceptUtil;
@@ -24,6 +25,7 @@ public abstract class GenericWorld implements World{
 	private WorldData worldData;
 	private PerceptUtil perceptUtil;
 	protected Activity activity;
+	private GenericCycleUpdateGUI cycleUpdateGUI;
 	
 	public GenericWorld(){
 		worldData = new WorldData();
@@ -89,7 +91,14 @@ public abstract class GenericWorld implements World{
 			agent.perceptWorld(getPerceptUtil().getPercepts());
 		}
 			
-		updateGUI();
+		if(cycleUpdateGUI != null){
+			updateGUI();
+		}
+	}
+	
+	public void updateGUI(){
+		cycleUpdateGUI.setWorldData(getWorldData());
+		activity.runOnUiThread(cycleUpdateGUI);
 	}
 
 	public WorldData getWorldData() {
@@ -108,8 +117,13 @@ public abstract class GenericWorld implements World{
 
 	public void setAndroidLayout(Activity activity) {
 		this.activity = activity;
+	}
+
+	public GenericCycleUpdateGUI getCycleUpdateGUI() {
+		return cycleUpdateGUI;
+	}
+
+	public void setCycleUpdateGUI(GenericCycleUpdateGUI cycleUpdateGUI) {
+		this.cycleUpdateGUI = cycleUpdateGUI;
 	}	
-	
-	
-	
 }

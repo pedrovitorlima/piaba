@@ -7,6 +7,7 @@ import java.util.Map;
 
 import br.piaba.piabadroid.system.agent.Agent;
 import br.piaba.piabadroid.system.agent.GenericAgent;
+import br.piaba.piabadroid.system.world.action.impl.MioAction;
 import br.piaba.piabadroid.system.world.action.impl.WorldAction;
 
 public class SynchronousExecutor extends GenericExecutor {
@@ -17,6 +18,16 @@ public class SynchronousExecutor extends GenericExecutor {
 		
 		for(GenericAgent agent : getAgents()){
 			agent.executeAgent();
+		}
+		
+		for(GenericAgent agent : getAgents()){
+			for(MioAction mio : getMios()){
+				if(getCycle() % mio.getCycleFrequency() == 0){
+					if(mio.verify(agent)){
+						mio.updateEmotions(agent);
+					}
+				}
+			}
 		}
 		
 		return perceptsUpdate;

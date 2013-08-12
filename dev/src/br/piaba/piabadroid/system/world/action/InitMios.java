@@ -27,7 +27,7 @@ public class InitMios {
 			Document doc = db.parse(new InputSource(fileStream));
 			doc.getDocumentElement().normalize();
 
-			NodeList nodeList = doc.getElementsByTagName("mios");
+			NodeList nodeList = doc.getElementsByTagName("meta-info-operator");
 
 			/** Assign textview array lenght by arraylist size */
 			for (int i = 0; i < nodeList.getLength(); i++) {
@@ -35,13 +35,13 @@ public class InitMios {
 				Node node = nodeList.item(i);
 
 				Element fstElmnt = (Element) node;
-				NodeList mioList = fstElmnt.getElementsByTagName("mios");
+				NodeList mioList = fstElmnt.getElementsByTagName("meta-info");
 
 				for (int j = 0; j < mioList.getLength(); j++) {
 					Node agent = mioList.item(j);
 
 					NodeList mioClassList = ((Element) agent)
-							.getElementsByTagName("mio-class");
+							.getElementsByTagName("meta-info-class");
 
 					for (int k = 0; k < mioClassList.getLength(); k++) {
 						Node mioNode = mioClassList.item(k);
@@ -51,6 +51,11 @@ public class InitMios {
 						try {
 							klass = Class.forName(mioNode.getTextContent());
 							MioAction mio = (MioAction) klass.newInstance();
+							
+							Node frequencyNode = ((Element) agent).getElementsByTagName("cycle-frequency").item(0);
+							int frequency = Integer.parseInt(frequencyNode.getTextContent());
+							
+							mio.setCycleFrequency(frequency);
 							mios.add(mio);
 						} catch (ClassNotFoundException e) {
 							System.err

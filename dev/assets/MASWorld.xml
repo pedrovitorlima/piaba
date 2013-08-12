@@ -19,16 +19,19 @@
 			<percept-value>0,0</percept-value>
 		</percept>
 		
-		
 		<percept>
 			<percept-name>qtdCiclosDuracaoAcao</percept-name>
 			<percept-value>5</percept-value>
-		</percept>
+		</percept>		
 	</percepts>
 	
 	<agent-executor>
 		<agent-executor-type>SYNCHRONOUS</agent-executor-type>
 	</agent-executor>
+	
+	<cycle-update-gui>
+		<cycle-update-gui-class>cerveja.CervejaCycleUpdateGUI</cycle-update-gui-class>    
+    </cycle-update-gui>
 	
 	<cycles-by-step>1</cycles-by-step>
 </world>

@@ -7,7 +7,8 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        android:background="@android:color/background_light">
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -16,11 +17,53 @@
             android:gravity="center" >
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/drinker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/drinker" />
             
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRowStressDrinker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+			
+            <TextView
+			        android:id="@+id/texto_stress_bebedor" 
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center"
+			        android:textColor="@android:color/black"
+			        android:text="Stress:"/>
+                  
+            <ProgressBar
+                 android:id="@+id/nivel_stress_bebedor"
+	             android:layout_width="60dp"
+	             style="@android:style/Widget.ProgressBar.Horizontal"
+	             android:background="@android:color/holo_blue_bright"
+	             android:gravity="center"/> 
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRowNivelBeersDrinker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+			
+            <TextView
+			        android:id="@+id/texto_nivel_beer" 
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center"
+			        android:textColor="@android:color/black"
+			        android:text="Cerveja:"/>
+                  
+            <ProgressBar
+                 android:id="@+id/nivel_beer"
+	             android:layout_width="60dp"
+	             style="@android:style/Widget.ProgressBar.Horizontal"
+	             android:background="@android:color/holo_blue_bright"
+	             android:gravity="center"/> 
         </TableRow>
       
         <TableRow
@@ -57,6 +100,7 @@
 			        android:id="@+id/texto_progresso_robo_1" 
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
+			        android:textColor="@android:color/black"
 			        android:text="Ação x:"/>
                   
                   <ProgressBar
@@ -76,6 +120,7 @@
 			        android:id="@+id/texto_stress_robo_1" 
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
+			        android:textColor="@android:color/black"
 			        android:text="Stress:"/>
                   
                   <ProgressBar
@@ -88,7 +133,7 @@
 			</TableLayout>
 			
             <Space
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="500dp" />
 
             <TableLayout
@@ -118,6 +163,7 @@
 			        android:id="@+id/texto_progresso_robo_2" 
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
+			        android:textColor="@android:color/black"
 			        android:text="Ação y:"/>
                   
                   <ProgressBar
@@ -131,13 +177,15 @@
 		            android:id="@+id/linha_4_direita"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
+		            android:textColor="@android:color/black"
 		            android:gravity="right" >
 
                   <TextView
-			        android:id="@+id/texto_stress_robo_2" 
-			        android:layout_width="fill_parent"
-			        android:layout_height="wrap_content"
-			        android:text="Stress:"/>
+				        android:id="@+id/texto_stress_robo_2" 
+				        android:layout_width="fill_parent"
+				        android:layout_height="wrap_content"
+				        android:textColor="@android:color/black"
+				        android:text="Stress:"/>
                   
                   <ProgressBar
                        android:id="@+id/stress_robo_2"

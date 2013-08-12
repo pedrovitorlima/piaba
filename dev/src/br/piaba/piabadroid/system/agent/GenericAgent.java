@@ -3,7 +3,6 @@ package br.piaba.piabadroid.system.agent;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.piaba.piabadroid.system.world.action.Param;
 import br.piaba.piabadroid.system.world.action.impl.WorldAction;
 import br.piaba.piabadroid.system.world.percepts.Percept;
 import br.piaba.piabadroid.system.world.percepts.PerceptUtil;
@@ -28,6 +27,8 @@ public abstract class GenericAgent implements Agent{
 	private String type;
 	
 	private List<WorldAction> oldActions;
+	
+	private static final String emotions[] = {"satisfaction", "fear", "relief", "disapointment", "joy", "distress", "gratification", "remorse", "gratitude", "anger"};
 	
 	public void init(){
 		execute = false;
@@ -59,6 +60,27 @@ public abstract class GenericAgent implements Agent{
 		
 	}
 	
+	public PerceptUtil getMyEmotionalState(){
+		List<Percept> allMyEmotionalState = new ArrayList<Percept>();
+		
+		for(Percept myPercept : getPercepts()){
+			if(myPercept.isSelf() && isEmotion(myPercept)){
+				allMyEmotionalState.add(myPercept);
+			}
+		}
+		
+		return new PerceptUtil(allMyEmotionalState);
+	}
+	
+	private boolean isEmotion(Percept myPercept) {
+		for(int i=0; i<emotions.length; i++){
+			if(emotions[i].equals(myPercept.getName().toLowerCase())){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * Referência para o mapa de ações que serão processadas pelo mundo.
 	 * **/

@@ -7,7 +7,7 @@ import br.piaba.piabadroid.system.world.action.impl.WorldAction;
 import br.piaba.piabadroid.system.world.percepts.Percept;
 import br.piaba.piabadroid.system.world.percepts.PerceptUtil;
 
-public class DeliveryInternalAction extends WorldAction {
+public class EntregarCerveja extends WorldAction {
 
 	@Override
 	public boolean verify(PerceptUtil bbAgent){
@@ -27,12 +27,18 @@ public class DeliveryInternalAction extends WorldAction {
 		beer.setValue("100");
 		
 		List<Percept> percepts = new ArrayList<Percept>();
-		percepts.add(beer);
+		
+		Percept interrompeuAcao = new Percept("interrompeuAcao", "");
+		interrompeuAcao.setRelatedAgent(getRequestorName());
+		
 		Percept ocioso = bbAgent.getUnicPercept("ocioso", getRequestorName());
 		if(ocioso != null){
 			ocioso.setToRemove(true);
 			percepts.add(ocioso);
 		}
+		
+		percepts.add(beer);
+		percepts.add(interrompeuAcao);
 		
 		return percepts;
 	}

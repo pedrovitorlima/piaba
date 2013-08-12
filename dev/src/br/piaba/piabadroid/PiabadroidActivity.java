@@ -8,6 +8,7 @@ import android.widget.Button;
 import br.piaba.piabadroid.system.activity.PiabaActivity;
 import cerveja.CervejaApplication;
 import cerveja.GameService;
+import cerveja.interacoes.InteracaoDeEntregarCerveja;
 
 public class PiabadroidActivity extends PiabaActivity implements OnClickListener{
     
@@ -23,6 +24,13 @@ public class PiabadroidActivity extends PiabaActivity implements OnClickListener
 		
 		Intent intent = new Intent(this, GameService.class);
     	startService(intent);
+    	
+    	Button interacaoEntregarCervejaRobo1 = (Button) findViewById(R.id.bt_robo_esquerda);
+    	Button interacaoEntregarCervejaRobo2 = (Button) findViewById(R.id.bt_robo_direita);
+    	
+    	interacaoEntregarCervejaRobo1.setOnClickListener(new InteracaoDeEntregarCerveja(systemController.getWorldData().getAgent("robo_1")));
+    	interacaoEntregarCervejaRobo2.setOnClickListener(new InteracaoDeEntregarCerveja(systemController.getWorldData().getAgent("robo_2")));
+    	
     }
 
 	@Override

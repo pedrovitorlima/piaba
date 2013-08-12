@@ -52,6 +52,12 @@ public class LerLivro extends WorldAction {
 			ocioso.setToRemove(true);
 			percepts.add(ocioso);
 		}
+		
+		Percept interrompeu = bbAgent.getUnicPercept("interrompeuAcao", getRequestorName());
+		if(interrompeu != null){
+			interrompeu.setToRemove(true);
+			percepts.add(interrompeu);
+		}
 				
 		return percepts;
 	}

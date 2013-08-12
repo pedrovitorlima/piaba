@@ -9,7 +9,7 @@ import br.piaba.piabadroid.system.world.percepts.Percept;
 import br.piaba.piabadroid.system.world.percepts.PerceptUtil;
 
 
-public class DrinkWorldAction extends WorldAction {
+public class BeberCerveja extends WorldAction {
 
 	@Override
 	public boolean verify(PerceptUtil bbAgent) {
