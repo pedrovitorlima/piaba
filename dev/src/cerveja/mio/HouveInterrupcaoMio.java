@@ -22,7 +22,7 @@ public class HouveInterrupcaoMio extends MioAction {
 	public void updateEmotions(GenericAgent agent) {
 		Percept distress = agent.getMyEmotionalState().getUnicPerceptByName("distress");
 		
-		agent.getPerceptUtil().updatePercept("distress", distress.getIntValue() + 10);
+		agent.getPerceptUtil().updatePercept("distress", distress.getIntValue() + 10 + "");
 	}
 
 }

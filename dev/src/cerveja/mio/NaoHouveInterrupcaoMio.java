@@ -9,8 +9,9 @@ public class NaoHouveInterrupcaoMio extends MioAction {
 	@Override
 	public boolean verify(GenericAgent agent) {
 		Percept interrupcao = agent.getPerceptUtil().getUnicPercept("interrompeuAcao", agent.getName());
+		Percept distress = agent.getMyEmotionalState().getUnicPerceptByName("distress");
 		
-		if(interrupcao != null){
+		if(interrupcao != null && distress.getIntValue() - 1 >= 0){
 			return true;
 		}
 		
@@ -21,12 +22,7 @@ public class NaoHouveInterrupcaoMio extends MioAction {
 	public void updateEmotions(GenericAgent agent) {
 		Percept distress = agent.getMyEmotionalState().getUnicPerceptByName("distress");
 		
-		int novoValor = 0;
-		
-		if(distress.getIntValue() - 10 > 0){
-			novoValor = distress.getIntValue() - 10;
-		}
-//		agent.getMyEmotionalState().updatePercept("distress", novoValor);
+		agent.getMyEmotionalState().updatePercept("distress", distress.getIntValue() - 1);
 	}
 
 }

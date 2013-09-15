@@ -17,6 +17,12 @@
 			</percept>
 			
 			<percept>
+				<percept-name>bebedor</percept-name>
+				<percept-value>1</percept-value>
+			</percept>
+			
+			
+			<percept>
 				<percept-name>beer</percept-name>
 				<percept-value>0</percept-value>
 			</percept>

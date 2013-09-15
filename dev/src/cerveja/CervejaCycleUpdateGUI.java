@@ -41,6 +41,9 @@ public class CervejaCycleUpdateGUI extends GenericCycleUpdateGUI{
 		
 		ImageView bebedor = (ImageView) findViewById(R.id.drinker);
 		
+		ProgressBar stressBebedor = (ProgressBar) findViewById(R.id.nivel_stress_bebedor);
+		stressBebedor.setProgress(getNivelStress("bebedor"));
+		
 		if(bebendoCerveja()){
 			bebedor.setImageResource(R.drawable.drinker_drinking);
 		}else{
@@ -68,6 +71,10 @@ public class CervejaCycleUpdateGUI extends GenericCycleUpdateGUI{
 		}
 		
 		return 0;
+	}
+	
+	private int getStressBebedor(){
+		return getWorldData().getAgent("bebedor").getPerceptUtil().getUnicPerceptByName("beer").getIntValue();
 	}
 
 	private boolean bebendoCerveja() {

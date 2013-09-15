@@ -10,4 +10,10 @@
 		<meta-info-class>cerveja.mio.NaoHouveInterrupcaoMio</meta-info-class>
 		<cycle-frequency>1</cycle-frequency>
 	</meta-info>
+	
+	<meta-info>
+		<meta-info-class>cerveja.mio.BebeuCervejaMio</meta-info-class>
+		<cycle-frequency>1</cycle-frequency>
+	</meta-info>
+	
 </meta-info-operator>

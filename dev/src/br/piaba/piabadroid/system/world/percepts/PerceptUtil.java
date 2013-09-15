@@ -206,7 +206,7 @@ public class PerceptUtil {
 				for(Percept worldPercept : getPercepts()){
 					
 					if(percept.getName().equals(worldPercept.getName())){
-						if(percept.getRelatedAgent().equals(worldPercept.getRelatedAgent())){
+						if(percept.getRelatedAgent().equals(worldPercept.getRelatedAgent()) && !percept.isSelf()) {
 							worldPercept.setValue(percept.getValue());
 							found = true;
 							break;

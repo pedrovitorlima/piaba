@@ -28,17 +28,17 @@ public class EntregarCerveja extends WorldAction {
 		
 		List<Percept> percepts = new ArrayList<Percept>();
 		
-		Percept interrompeuAcao = new Percept("interrompeuAcao", "");
-		interrompeuAcao.setRelatedAgent(getRequestorName());
-		
 		Percept ocioso = bbAgent.getUnicPercept("ocioso", getRequestorName());
 		if(ocioso != null){
 			ocioso.setToRemove(true);
 			percepts.add(ocioso);
+		}else{
+			Percept interrompeuAcao = new Percept("interrompeuAcao", "");
+			interrompeuAcao.setRelatedAgent(getRequestorName());
+			percepts.add(interrompeuAcao);
 		}
-		
+				
 		percepts.add(beer);
-		percepts.add(interrompeuAcao);
 		
 		return percepts;
 	}
